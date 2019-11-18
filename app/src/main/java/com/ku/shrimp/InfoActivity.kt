@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import com.ku.shrimp.ui.home.HomeActivity
 import kotlinx.android.synthetic.main.activity_info.*
 
 /**
