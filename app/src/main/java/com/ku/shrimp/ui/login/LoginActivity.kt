@@ -15,6 +15,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import com.ku.shrimp.HomeActivity
 import com.ku.shrimp.InfoActivity
 
 import com.ku.shrimp.R
@@ -36,6 +37,17 @@ class LoginActivity : AppCompatActivity() {
 
         loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
+
+        // set context to login repository
+        // then check status file
+        loginViewModel.loginRepository.context = applicationContext
+        var isLogin = loginViewModel.loginRepository.checkLogin()
+
+        if (isLogin) {
+            val intent = Intent(applicationContext, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
             val loginState = it ?: return@Observer
